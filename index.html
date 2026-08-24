@@ -284,68 +284,93 @@
   }
 
   /* ================================================================ MOBILE ==
-     Images were zoomed too tight on small screens because object-fit: cover
-     on a landscape image in a portrait viewport crops aggressively. Fix the
-     framing, spacing, and ensure every act is readable on a phone.
+     Three structural problems on mobile, all from the same root cause:
+     pinned acts with desktop-length spans create dead scroll zones on a
+     portrait viewport because content cues finish before the pin does.
+
+     Fix: shorter spans on mobile via CSS overrides on the outer height
+     the engine sets (it reads data-sc-span at layout time and writes
+     height in vh — we override that in CSS). Also fix image cropping
+     and the empty-screen gaps.
      ================================================================ */
   @media (max-width: 860px) {
-    /* Hero: reduce parallax magnitude so image doesn't clip off-screen */
+    /* --- Shorten pinned acts on mobile to eliminate dead scroll --- */
+    /* Act 1 hero: 2.8vh → 2.0vh on mobile */
+    section[data-sc-act="pin"][data-sc-span="2.8"] {
+      height: 200vh !important;
+    }
+    /* Act 3 pan: 4.2vh → 3.0vh — cards are narrower so less travel needed */
+    section[data-sc-act="pan"][data-sc-span="4.2"] {
+      height: 300vh !important;
+    }
+    /* Act 4 peak: 3.0vh → 2.2vh */
+    section[data-sc-act="pin"][data-sc-span="3.0"] {
+      height: 220vh !important;
+    }
+    /* Act 5 close: keep at 1.15 — already short */
+
+    /* --- Hero --- */
     .hero-ground {
-      opacity: 0.35;
-      object-position: center 30%;
+      opacity: 0.38;
+      object-position: 60% 40%;
     }
     .hero-copy {
-      padding: clamp(1.5rem, 5vw, 3rem);
-      padding-top: 20vh;
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      padding-top: 18vh;
       justify-content: flex-start;
     }
     .hero-copy .sc-body { max-width: none; }
-    .clients { gap: 1.5rem; }
+    .clients { gap: 1.2rem; margin-top: 1.25rem; }
 
-    /* Split (act 2): stack vertically, image first on mobile */
+    /* --- Split (act 2): stack, image above text --- */
     .split {
-      padding: clamp(1.5rem, 5vw, 3rem);
-      gap: clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      gap: clamp(1.25rem, 3vw, 2rem);
     }
     .split figure { order: -1; }
     .split figure img {
       aspect-ratio: 16/9;
       object-fit: cover;
+      object-position: center 40%;
       border-radius: 0.5rem;
+      max-height: 50vh;
     }
     .stat-row { gap: 1.5rem; }
     .stat__num { font-size: clamp(1.8rem, 8vw, 2.5rem); }
 
-    /* Pan rail (act 3): cards sized for thumb-scrollable on mobile */
+    /* --- Pan rail (act 3) --- */
     .rail {
-      padding: 0 clamp(1rem, 4vw, 2rem);
-      gap: clamp(1rem, 3vw, 2rem);
+      padding: 0 clamp(1rem, 3vw, 1.5rem);
+      gap: clamp(0.75rem, 2vw, 1.5rem);
       align-items: center;
     }
     .rail__lead {
-      min-width: 75vw;
+      min-width: 78vw;
       padding-right: 0;
     }
     .phase {
-      min-width: 72vw;
+      min-width: 70vw;
     }
     .phase img {
       aspect-ratio: 3/2;
+      object-position: center 40%;
     }
     .phase__body { padding: 1rem 1.25rem 1.25rem; }
+    .phase h3 { font-size: 1.1rem; }
 
-    /* Peak (act 4): ensure reveal image doesn't crop too tight */
+    /* --- Peak reveal (act 4) --- */
     .reveal-ground {
-      object-position: center center;
+      object-position: center 60%;
     }
     .reveal-copy {
-      padding: clamp(1rem, 4vw, 2rem);
+      padding: clamp(1.25rem, 4vw, 2rem);
     }
     .reveal-copy .sc-display {
       font-size: var(--sc-t-3xl);
+      text-shadow: 0 2px 60px rgba(0,0,0,0.85);
     }
 
-    /* Close (act 5): more breathing room */
+    /* --- Close (act 5) --- */
     .close { padding: clamp(1.5rem, 5vw, 3rem); }
     .close__inner { max-width: none; }
     .cta {
@@ -353,16 +378,19 @@
       font-size: 0.9rem;
     }
 
-    /* Nav bar: tighter on mobile */
-    .site-bar { padding: 0.75rem clamp(1rem, 4vw, 2rem); }
-    .bar-cta { padding: 0.45rem 1rem; font-size: 0.75rem; }
+    /* --- Nav bar --- */
+    .site-bar { padding: 0.75rem clamp(1rem, 3vw, 1.5rem); }
+    .bar-cta { padding: 0.45rem 1rem; font-size: 0.72rem; }
   }
 
-  /* Small phones (SE, mini) */
+  /* Small phones (SE, mini, 375px and under) */
   @media (max-width: 390px) {
-    .hero-copy { padding-top: 15vh; }
-    .phase { min-width: 80vw; }
-    .rail__lead { min-width: 85vw; }
+    .hero-copy { padding-top: 14vh; }
+    section[data-sc-act="pin"][data-sc-span="2.8"] { height: 180vh !important; }
+    section[data-sc-act="pan"][data-sc-span="4.2"] { height: 260vh !important; }
+    section[data-sc-act="pin"][data-sc-span="3.0"] { height: 200vh !important; }
+    .phase { min-width: 78vw; }
+    .rail__lead { min-width: 82vw; }
     .clients span { font-size: 0.65rem; }
   }
 </style>
