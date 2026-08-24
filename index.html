@@ -282,6 +282,89 @@
     color: var(--sc-ink-soft);
     opacity: 0.6;
   }
+
+  /* ================================================================ MOBILE ==
+     Images were zoomed too tight on small screens because object-fit: cover
+     on a landscape image in a portrait viewport crops aggressively. Fix the
+     framing, spacing, and ensure every act is readable on a phone.
+     ================================================================ */
+  @media (max-width: 860px) {
+    /* Hero: reduce parallax magnitude so image doesn't clip off-screen */
+    .hero-ground {
+      opacity: 0.35;
+      object-position: center 30%;
+    }
+    .hero-copy {
+      padding: clamp(1.5rem, 5vw, 3rem);
+      padding-top: 20vh;
+      justify-content: flex-start;
+    }
+    .hero-copy .sc-body { max-width: none; }
+    .clients { gap: 1.5rem; }
+
+    /* Split (act 2): stack vertically, image first on mobile */
+    .split {
+      padding: clamp(1.5rem, 5vw, 3rem);
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+    .split figure { order: -1; }
+    .split figure img {
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+    .stat-row { gap: 1.5rem; }
+    .stat__num { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+
+    /* Pan rail (act 3): cards sized for thumb-scrollable on mobile */
+    .rail {
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      gap: clamp(1rem, 3vw, 2rem);
+      align-items: center;
+    }
+    .rail__lead {
+      min-width: 75vw;
+      padding-right: 0;
+    }
+    .phase {
+      min-width: 72vw;
+    }
+    .phase img {
+      aspect-ratio: 3/2;
+    }
+    .phase__body { padding: 1rem 1.25rem 1.25rem; }
+
+    /* Peak (act 4): ensure reveal image doesn't crop too tight */
+    .reveal-ground {
+      object-position: center center;
+    }
+    .reveal-copy {
+      padding: clamp(1rem, 4vw, 2rem);
+    }
+    .reveal-copy .sc-display {
+      font-size: var(--sc-t-3xl);
+    }
+
+    /* Close (act 5): more breathing room */
+    .close { padding: clamp(1.5rem, 5vw, 3rem); }
+    .close__inner { max-width: none; }
+    .cta {
+      padding: 0.85rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Nav bar: tighter on mobile */
+    .site-bar { padding: 0.75rem clamp(1rem, 4vw, 2rem); }
+    .bar-cta { padding: 0.45rem 1rem; font-size: 0.75rem; }
+  }
+
+  /* Small phones (SE, mini) */
+  @media (max-width: 390px) {
+    .hero-copy { padding-top: 15vh; }
+    .phase { min-width: 80vw; }
+    .rail__lead { min-width: 85vw; }
+    .clients span { font-size: 0.65rem; }
+  }
 </style>
 </head>
 <body>
@@ -299,7 +382,7 @@
   <!-- 1 · PRECISION: pin — blueprints as ground, the plan exists before the space -->
   <section data-sc-act="pin" data-sc-span="2.8" data-sc-drift="#14181E">
     <div data-sc-stage>
-      <img class="hero-ground" src="assets/01-blueprints.webp" alt="Architectural blueprints spread across a work table under a desk lamp" data-sc-parallax="-0.6">
+      <img class="hero-ground" src="assets/01-blueprints.webp" alt="Architectural blueprints spread across a work table under a desk lamp" data-sc-parallax="-0.15">
       <div class="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
       <div class="hero-copy">
         <div class="year-mark" data-sc-cue="0 0.4 0">Since 1982</div>
