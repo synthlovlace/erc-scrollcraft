@@ -1,0 +1,407 @@
+<!doctype html>
+<!--
+  Engler Retail Construction — ScrollCraft build
+  Grammar: filmic one-shot
+  Score: pin > flow+reveal > pan > pin+reveal > pin
+  Feeling curve: precision > weight > grit > confidence > resolve
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Engler Retail Construction · Building retail since 1982</title>
+<meta name="description" content="From blueprints to grand opening. 44 years of retail construction, nationwide.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237B1C2E'/></svg>">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root {
+    --sc-canvas:     #14181E;
+    --sc-surface:    #1a1f28;
+    --sc-ink:        #F0F2F5;
+    --sc-ink-soft:   #8a8d94;
+    --sc-accent:     #7B1C2E;
+    --sc-accent-ink: #F0F2F5;
+    --sc-font-display: "Archivo", system-ui, sans-serif;
+    --sc-font-text:    "Geist", system-ui, sans-serif;
+  }
+
+  /* --- Act 1: Precision --- */
+  .hero-ground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    filter: brightness(0.7);
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    padding: clamp(2rem, 6vw, 6rem);
+    max-width: 56rem;
+  }
+  .hero-copy .sc-body {
+    margin-top: 1.5rem;
+    max-width: 32rem;
+  }
+  .year-mark {
+    font-family: var(--sc-font-display);
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sc-accent);
+    margin-bottom: 1rem;
+  }
+
+  /* --- Act 2: Weight (flow + reveal) --- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 5rem);
+    align-items: center;
+    padding: clamp(2rem, 6vw, 6rem);
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+  @media (max-width: 48rem) {
+    .split { grid-template-columns: 1fr; }
+  }
+  .split figure {
+    margin: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .split figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat__num {
+    font-family: var(--sc-font-display);
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--sc-accent);
+  }
+  .stat__label {
+    font-size: 0.85rem;
+    color: var(--sc-ink-soft);
+    margin-top: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- Act 3: Grit (pan rail) --- */
+  .rail {
+    display: flex;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: stretch;
+    padding: 0 clamp(2rem, 4vw, 4rem);
+    height: 100%;
+  }
+  .rail__lead {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: clamp(16rem, 28vw, 22rem);
+    flex-shrink: 0;
+    padding-right: 2rem;
+  }
+  .phase {
+    min-width: clamp(18rem, 32vw, 26rem);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: var(--sc-surface);
+  }
+  .phase img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+  }
+  .phase__body {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  .phase__num {
+    font-family: var(--sc-font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sc-accent);
+    margin-bottom: 0.5rem;
+  }
+  .phase h3 {
+    font-family: var(--sc-font-display);
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--sc-ink);
+  }
+  .phase p {
+    font-size: 0.9rem;
+    color: var(--sc-ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* --- Act 4: Confidence (the peak) --- */
+  .reveal-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .reveal-ground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .reveal-copy {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 44rem;
+  }
+  .reveal-copy .sc-display {
+    text-shadow: 0 2px 40px rgba(0,0,0,0.7);
+  }
+
+  /* --- Act 5: Close --- */
+  .close {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+  }
+  .close__inner {
+    max-width: 36rem;
+  }
+  .cta {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    background: var(--sc-accent);
+    color: var(--sc-accent-ink);
+    font-family: var(--sc-font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: background 0.2s;
+  }
+  .cta:hover { background: #9a2438; }
+  .foot {
+    margin-top: auto;
+    padding: 2rem;
+    font-size: 0.75rem;
+    color: var(--sc-ink-soft);
+    text-align: center;
+  }
+  .foot a { color: var(--sc-ink-soft); }
+
+  /* --- Top bar --- */
+  .site-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem clamp(1.5rem, 3vw, 3rem);
+    background: linear-gradient(to bottom, rgba(20,24,30,0.9), rgba(20,24,30,0));
+    pointer-events: none;
+  }
+  .site-bar > * { pointer-events: auto; }
+  .mark {
+    font-family: var(--sc-font-display);
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sc-ink);
+    text-decoration: none;
+  }
+  .bar-cta {
+    font-family: var(--sc-font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sc-accent-ink);
+    background: var(--sc-accent);
+    padding: 0.55rem 1.4rem;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .bar-cta:hover { background: #9a2438; }
+
+  /* --- Clients row --- */
+  .clients {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .clients span {
+    font-family: var(--sc-font-display);
+    font-size: clamp(0.7rem, 1vw, 0.85rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sc-ink-soft);
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="site-bar">
+  <a class="mark" href="#">Engler</a>
+  <a class="bar-cta" href="#bid">Request a Bid</a>
+</header>
+
+<main id="top">
+
+  <!-- 1 · PRECISION: pin — blueprints as ground, the plan exists before the space -->
+  <section data-sc-act="pin" data-sc-span="2.8" data-sc-drift="#14181E">
+    <div data-sc-stage>
+      <img class="hero-ground" src="assets/01-blueprints.webp" alt="Architectural blueprints spread across a work table under a desk lamp" data-sc-parallax="-0.6">
+      <div class="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="year-mark" data-sc-cue="0 0.4 0">Since 1982</div>
+        <h1 class="sc-display sc-display--xl" data-sc-cue="0 0.65 0" data-sc-kinetic="lines">Every space starts on paper.</h1>
+        <p class="sc-body" data-sc-cue="0.18 0.82">From architectural drawings to finished retail floors. 44 years of building the spaces where business happens.</p>
+        <div class="clients" data-sc-cue="0.35 0.92">
+          <span>Maurice's</span>
+          <span>Petco</span>
+          <span>Christopher &amp; Banks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · WEIGHT: flow + reveal — raw materials, the scale of what's coming -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#181d26">
+    <div class="sc-wrap split">
+      <div class="sc-stack" data-sc-in data-sc-stagger="70">
+        <h2 class="sc-display sc-display--lg">The materials arrive.</h2>
+        <p class="sc-body">Steel beams, lumber stacks, concrete, glass. Before a single wall goes up, every component is staged, verified, and sequenced. The build is won or lost in logistics.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat__num" data-sc-count="0 44" data-sc-count-at="0.2 0.6">0</span>
+            <span class="stat__label">Years</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">Nationwide</span>
+            <span class="stat__label">Reach</span>
+          </div>
+        </div>
+      </div>
+      <figure data-sc-reveal="left" data-sc-reveal-at="0.18 0.62">
+        <img src="assets/02-materials.webp" width="1920" height="1080" alt="Raw construction materials — steel, lumber, and supplies staged at a job site">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3 · GRIT: pan — the construction timeline, three phases scrolling sideways -->
+  <section data-sc-act="pan" data-sc-span="4.2" data-sc-drift="#1a1f28">
+    <div data-sc-stage>
+      <div class="rail" data-sc-pan="0.06">
+        <div class="rail__lead sc-stack">
+          <h2 class="sc-display sc-display--md">The build.</h2>
+          <p class="sc-body">Three phases. Weeks of work compressed into a scroll. Framing goes up, systems thread through, surfaces close in.</p>
+        </div>
+        <article class="phase">
+          <div data-sc-tilt="5"><img src="assets/03-framing.webp" alt="Steel and wood framing going up on a commercial construction site"></div>
+          <div class="phase__body">
+            <div class="phase__num">Phase 01</div>
+            <h3>Framing</h3>
+            <p>Steel studs and structural headers define every room, every corridor, every sightline. The skeleton of the space takes shape.</p>
+          </div>
+        </article>
+        <article class="phase">
+          <div data-sc-tilt="5"><img src="assets/04-electrical.webp" alt="Electrical conduit and wiring roughed in through exposed framing"></div>
+          <div class="phase__body">
+            <div class="phase__num">Phase 02</div>
+            <h3>Systems</h3>
+            <p>Electrical, HVAC, plumbing, fire suppression. Everything that has to be right before the walls close. No second chances.</p>
+          </div>
+        </article>
+        <article class="phase">
+          <div data-sc-tilt="5"><img src="assets/05-drywall.webp" alt="Drywall being hung and finished in a commercial retail space"></div>
+          <div class="phase__body">
+            <div class="phase__num">Phase 03</div>
+            <h3>Surfaces</h3>
+            <p>Drywall, tape, mud, paint. The raw structure disappears behind finished surfaces. The space starts to look like what it will become.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · CONFIDENCE: pin + iris reveal — the finished space. THE PEAK. -->
+  <section data-sc-act="pin" data-sc-span="3.0" data-sc-drift="#14181E">
+    <div data-sc-stage class="reveal-stage">
+      <figure data-sc-reveal="iris" data-sc-reveal-at="0.08 0.52" style="position:absolute;inset:0;">
+        <img class="reveal-ground" src="assets/06-finished.webp" alt="A completed modern retail interior with polished floors, track lighting, and custom fixtures">
+      </figure>
+      <div class="sc-scrim sc-scrim--trail" aria-hidden="true" style="z-index:1;"></div>
+      <div class="reveal-copy" data-sc-cue="0.42 0.92">
+        <h2 class="sc-display sc-display--xl" data-sc-kinetic="lines">Then the lights come on.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · RESOLVE: pin — CTA close, one line, one action -->
+  <section id="bid" data-sc-act="pin" data-sc-span="1.15" data-sc-drift="#14181E">
+    <div data-sc-stage class="close" data-sc-spotlight>
+      <div class="close__inner">
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.06" data-sc-kinetic="lines">Your next build starts with a conversation.</h2>
+        <a class="cta" href="mailto:info@englerretailconstruction.com" data-sc-magnet="0.26" data-sc-cue="0.06" data-sc-rise="0">Request a Bid</a>
+      </div>
+      <footer class="foot">
+        <p>&copy; 2026 Engler Retail Construction &middot; St. Cloud, MN &middot; Nationwide</p>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+</body>
+</html>
