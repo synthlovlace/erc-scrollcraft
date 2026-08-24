@@ -164,48 +164,63 @@
     margin: 0;
   }
 
-  /* --- Act 4: Confidence (the peak) --- */
-  .reveal-stage {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  /* --- Act 4: Confidence — the peak (flow, not pinned) --- */
+  .peak-section {
+    padding-block: 0;
+    margin-top: calc(-1 * var(--sc-section));
   }
-  .reveal-ground {
+  .peak-wrap {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .peak-image {
     position: absolute;
     inset: 0;
+  }
+  .peak-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 60%;
   }
-  .reveal-copy {
+  .peak-copy {
     position: relative;
     z-index: 2;
-    text-align: center;
-    padding: 2rem;
-    max-width: 44rem;
+    padding: clamp(2rem, 6vw, 6rem);
+    padding-top: 40vh;
+    max-width: 40rem;
+    background: linear-gradient(to top,
+      rgba(20,24,30,0.92) 0%,
+      rgba(20,24,30,0.7) 40%,
+      transparent 80%);
   }
-  .reveal-copy .sc-display {
-    text-shadow: 0 2px 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.5);
+  .peak-copy .sc-display {
+    text-shadow: 0 2px 30px rgba(0,0,0,0.6);
+  }
+  .peak-copy .sc-body {
+    text-shadow: 0 1px 12px rgba(0,0,0,0.5);
   }
 
-  /* --- Act 5: Close --- */
-  .close {
+  /* --- Act 5: Close (flow, not pinned) --- */
+  .close-section {
+    padding-block: 0;
+  }
+  .close-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
     text-align: center;
-    padding: 2rem;
-  }
-  .close__inner {
-    max-width: 36rem;
+    min-height: 80vh;
+    padding: clamp(3rem, 8vw, 8rem) clamp(2rem, 6vw, 4rem);
+    gap: 2rem;
   }
   .cta {
     display: inline-block;
-    margin-top: 2rem;
     padding: 1rem 3rem;
     background: var(--sc-accent);
     color: var(--sc-accent-ink);
@@ -216,12 +231,11 @@
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 0.25rem;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
   }
-  .cta:hover { background: #9a2438; }
+  .cta:hover { background: #9a2438; transform: translateY(-2px); }
   .foot {
-    margin-top: auto;
-    padding: 2rem;
+    margin-top: 2rem;
     font-size: 0.75rem;
     color: var(--sc-ink-soft);
     text-align: center;
@@ -343,21 +357,18 @@
     .phase__body { padding: 1rem 1.25rem 1.25rem; }
     .phase h3 { font-size: 1.1rem; }
 
-    /* --- Peak reveal (act 4) --- */
-    .reveal-ground {
-      object-position: center 60%;
+    /* --- Peak (act 4, flow) --- */
+    .peak-copy {
+      padding: clamp(1.5rem, 5vw, 2.5rem);
+      padding-top: 50vh;
     }
-    .reveal-copy {
-      padding: clamp(1.25rem, 4vw, 2rem);
-    }
-    .reveal-copy .sc-display {
-      font-size: var(--sc-t-3xl);
-      text-shadow: 0 2px 60px rgba(0,0,0,0.85);
-    }
+    .peak-copy .sc-display { font-size: var(--sc-t-3xl); }
 
-    /* --- Close (act 5) --- */
-    .close { padding: clamp(1.5rem, 5vw, 3rem); }
-    .close__inner { max-width: none; }
+    /* --- Close (act 5, flow) --- */
+    .close-wrap {
+      min-height: 60vh;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+    }
     .cta {
       padding: 0.85rem 2rem;
       font-size: 0.9rem;
@@ -466,25 +477,24 @@
     </div>
   </section>
 
-  <!-- 4 · CONFIDENCE: pin + iris reveal — the finished space. THE PEAK. -->
-  <section data-sc-act="pin" data-sc-span="2.0" data-sc-drift="#14181E">
-    <div data-sc-stage class="reveal-stage">
-      <figure data-sc-reveal="iris" data-sc-reveal-at="0.02 0.45" style="position:absolute;inset:0;">
-        <img class="reveal-ground" src="assets/06-finished.webp" alt="A completed modern retail interior with polished floors, track lighting, and custom fixtures">
-      </figure>
-      <div class="reveal-copy" data-sc-cue="0.35 0.88">
-        <h2 class="sc-display sc-display--xl" data-sc-kinetic="lines">Then the lights come on.</h2>
+  <!-- 4 · CONFIDENCE: flow — the finished space. THE PEAK. -->
+  <section class="sc-section peak-section" data-sc-act="flow" data-sc-drift="#14181E">
+    <div class="peak-wrap">
+      <div class="peak-image" data-sc-in>
+        <img src="assets/06-finished.webp" alt="A completed modern retail interior with polished floors, track lighting, and custom fixtures">
+      </div>
+      <div class="peak-copy" data-sc-in data-sc-stagger="120">
+        <h2 class="sc-display sc-display--xl">Then the lights come on.</h2>
+        <p class="sc-body" style="margin-top: var(--sc-4); max-width: 36ch;">The space is finished. 44 years of building — and this is the moment every project points at.</p>
       </div>
     </div>
   </section>
 
-  <!-- 5 · RESOLVE: pin — CTA close, one line, one action -->
-  <section id="bid" data-sc-act="pin" data-sc-span="1.3" data-sc-drift="#14181E">
-    <div data-sc-stage class="close" data-sc-spotlight>
-      <div class="close__inner">
-        <h2 class="sc-display sc-display--lg" data-sc-cue="0.02" data-sc-kinetic="lines">Your next build starts with a conversation.</h2>
-        <a class="cta" href="mailto:info@englerretailconstruction.com" data-sc-magnet="0.26" data-sc-cue="0.02" data-sc-rise="0">Request a Bid</a>
-      </div>
+  <!-- 5 · RESOLVE: flow — CTA close, one line, one action -->
+  <section id="bid" class="sc-section close-section" data-sc-act="flow" data-sc-drift="#14181E">
+    <div class="close-wrap" data-sc-in data-sc-stagger="100">
+      <h2 class="sc-display sc-display--lg">Your next build starts<br>with a conversation.</h2>
+      <a class="cta" href="mailto:info@englerretailconstruction.com">Request a Bid</a>
       <footer class="foot">
         <p>&copy; 2026 Engler Retail Construction &middot; St. Cloud, MN &middot; Nationwide</p>
       </footer>
