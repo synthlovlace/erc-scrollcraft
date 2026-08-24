@@ -294,20 +294,8 @@
      and the empty-screen gaps.
      ================================================================ */
   @media (max-width: 860px) {
-    /* --- Shorten pinned acts on mobile to eliminate dead scroll --- */
-    /* Act 1 hero: 2.8vh → 2.0vh on mobile */
-    section[data-sc-act="pin"][data-sc-span="2.8"] {
-      height: 200vh !important;
-    }
-    /* Act 3 pan: 4.2vh → 3.0vh — cards are narrower so less travel needed */
-    section[data-sc-act="pan"][data-sc-span="4.2"] {
-      height: 300vh !important;
-    }
-    /* Act 4 peak: 3.0vh → 2.2vh */
-    section[data-sc-act="pin"][data-sc-span="3.0"] {
-      height: 220vh !important;
-    }
-    /* Act 5 close: keep at 1.15 — already short */
+    /* Span reduction is handled by the pre-mount script (see bottom of page).
+       CSS cannot override the engine's inline height reliably. */
 
     /* --- Hero --- */
     .hero-ground {
@@ -386,9 +374,6 @@
   /* Small phones (SE, mini, 375px and under) */
   @media (max-width: 390px) {
     .hero-copy { padding-top: 14vh; }
-    section[data-sc-act="pin"][data-sc-span="2.8"] { height: 180vh !important; }
-    section[data-sc-act="pan"][data-sc-span="4.2"] { height: 260vh !important; }
-    section[data-sc-act="pin"][data-sc-span="3.0"] { height: 200vh !important; }
     .phase { min-width: 78vw; }
     .rail__lead { min-width: 82vw; }
     .clients span { font-size: 0.65rem; }
@@ -513,6 +498,26 @@
 </main>
 
 <script src="scrollcraft.js"></script>
-<script>ScrollCraft.mount(document.body);</script>
+<script>
+// Mobile span reduction — must run BEFORE mount() reads the attributes.
+// The engine reads data-sc-span at layout time from the DOM, so patching
+// the attributes before mount is the correct integration point.
+if (window.matchMedia('(max-width: 860px)').matches) {
+  document.querySelectorAll('[data-sc-act]').forEach(function(el) {
+    var span = parseFloat(el.getAttribute('data-sc-span'));
+    if (!span) return;
+    // Reduce all pinned spans by ~30% on mobile to eliminate dead scroll
+    var mobile = {
+      '2.8': '1.8',  // hero pin
+      '4.2': '2.8',  // pan rail
+      '3.0': '2.0',  // peak reveal
+      '1.15': '1.15' // close (already short)
+    };
+    var key = span.toFixed(span % 1 ? 2 : 1);
+    if (mobile[key]) el.setAttribute('data-sc-span', mobile[key]);
+  });
+}
+ScrollCraft.mount(document.body);
+</script>
 </body>
 </html>
