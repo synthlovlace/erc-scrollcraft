@@ -420,14 +420,20 @@
     }
     .phase {
       min-width: 70vw;
-      max-height: 78vh;
+      max-height: 72vh;
+      overflow: hidden;
     }
     .phase img {
-      aspect-ratio: 16/9;
+      aspect-ratio: 16/10;
       object-position: center 40%;
-      max-height: 30vh;
+      max-height: 38vh;
+      flex-shrink: 1;
+      min-height: 0;
     }
-    .phase__body { padding: 0.75rem 1rem 0.85rem; }
+    .phase__body {
+      padding: 0.75rem 1rem 0.85rem;
+      flex-shrink: 0;
+    }
     .phase h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
     .phase p { font-size: 0.78rem; line-height: 1.4; }
     .phase__tag { font-size: 0.58rem; margin-top: 0.5rem; }
