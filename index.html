@@ -381,14 +381,15 @@
     .hero-copy .sc-body { max-width: none; }
     .clients { gap: 1.2rem; margin-top: 1.25rem; }
 
-    /* --- Proof (act 1b) --- */
+    /* --- Proof (act 1b): stack vertically on mobile --- */
     .proof-grid {
-      gap: clamp(1.5rem, 6vw, 3rem);
-      flex-wrap: wrap;
-      padding: clamp(1.5rem, 5vw, 3rem);
+      flex-direction: column;
+      gap: 2rem;
+      min-height: 50vh;
+      padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 3rem);
     }
-    .proof-stat__num { font-size: clamp(2.5rem, 12vw, 4rem); }
-    .proof-divider { height: 3rem; }
+    .proof-stat__num { font-size: clamp(3rem, 14vw, 5rem); }
+    .proof-divider { width: 3rem; height: 1px; }
 
     /* --- Split (act 2): stack, image above text --- */
     .split {
@@ -420,11 +421,14 @@
       min-width: 70vw;
     }
     .phase img {
-      aspect-ratio: 3/2;
+      aspect-ratio: 4/3;
       object-position: center 40%;
+      max-height: 35vh;
     }
-    .phase__body { padding: 1rem 1.25rem 1.25rem; }
-    .phase h3 { font-size: 1.1rem; }
+    .phase__body { padding: 0.85rem 1rem 1rem; }
+    .phase h3 { font-size: 1rem; }
+    .phase p { font-size: 0.8rem; line-height: 1.45; }
+    .phase__tag { font-size: 0.6rem; margin-top: 0.5rem; }
 
     /* --- Peak (act 4, flow) --- */
     .peak-copy {
