@@ -66,8 +66,8 @@
     align-items: center;
     justify-content: center;
     gap: clamp(3rem, 8vw, 8rem);
-    height: 100%;
-    padding: clamp(2rem, 6vw, 6rem);
+    min-height: 60vh;
+    padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 6vw, 6rem);
   }
   .proof-stat { text-align: center; }
   .proof-stat__num {
@@ -470,7 +470,7 @@
 <main id="top">
 
   <!-- 1 · PRECISION: pin — blueprints as ground, the plan exists before the space -->
-  <section data-sc-act="pin" data-sc-span="1.8" data-sc-drift="#14181E">
+  <section data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#14181E">
     <div data-sc-stage>
       <img class="hero-ground" src="assets/01-blueprints.webp" alt="Architectural blueprints spread across a work table under a desk lamp" data-sc-parallax="-0.15">
       <div class="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
@@ -487,24 +487,22 @@
     </div>
   </section>
 
-  <!-- 1b · PROOF: pin — the track record, numbers that land as you scroll -->
-  <section data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#111820">
-    <div data-sc-stage>
-      <div class="proof-grid">
-        <div class="proof-stat">
-          <div class="proof-stat__num" data-sc-cue="0.08 0.55"><span data-sc-count="0 44" data-sc-count-at="0.12 0.5">0</span><span class="proof-stat__suffix"> yrs</span></div>
-          <div class="proof-stat__label" data-sc-cue="0.15 0.6">In business</div>
-        </div>
-        <div class="proof-divider" data-sc-cue="0.12 0.55" aria-hidden="true"></div>
-        <div class="proof-stat">
-          <div class="proof-stat__num" data-sc-cue="0.18 0.65"><span data-sc-count="0 400" data-sc-count-at="0.22 0.58">0</span><span class="proof-stat__suffix">+</span></div>
-          <div class="proof-stat__label" data-sc-cue="0.25 0.7">Projects delivered</div>
-        </div>
-        <div class="proof-divider" data-sc-cue="0.22 0.65" aria-hidden="true"></div>
-        <div class="proof-stat">
-          <div class="proof-stat__num" data-sc-cue="0.3 0.75"><span data-sc-count="0 100" data-sc-count-at="0.34 0.68">0</span><span class="proof-stat__suffix">%</span></div>
-          <div class="proof-stat__label" data-sc-cue="0.37 0.8">On-time completion</div>
-        </div>
+  <!-- 1b · PROOF: flow — the track record, numbers reveal on entry -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#111820">
+    <div class="proof-grid" data-sc-in data-sc-stagger="120">
+      <div class="proof-stat">
+        <div class="proof-stat__num"><span data-sc-count="0 44" data-sc-count-at="0.1 0.5">0</span><span class="proof-stat__suffix"> yrs</span></div>
+        <div class="proof-stat__label">In business</div>
+      </div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-stat">
+        <div class="proof-stat__num"><span data-sc-count="0 400" data-sc-count-at="0.1 0.5">0</span><span class="proof-stat__suffix">+</span></div>
+        <div class="proof-stat__label">Projects delivered</div>
+      </div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-stat">
+        <div class="proof-stat__num"><span data-sc-count="0 100" data-sc-count-at="0.1 0.5">0</span><span class="proof-stat__suffix">%</span></div>
+        <div class="proof-stat__label">On-time completion</div>
       </div>
     </div>
   </section>
@@ -533,7 +531,7 @@
   </section>
 
   <!-- 3 · GRIT: pan — the construction timeline, three phases scrolling sideways -->
-  <section data-sc-act="pan" data-sc-span="2.4" data-sc-drift="#1a1f28">
+  <section data-sc-act="pan" data-sc-span="2.0" data-sc-drift="#1a1f28">
     <div data-sc-stage>
       <div class="rail" data-sc-pan="0.06">
         <div class="rail__lead sc-stack">
