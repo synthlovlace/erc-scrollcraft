@@ -60,6 +60,66 @@
     margin-bottom: 1rem;
   }
 
+  /* --- Act 1b: Proof — stat counters, pinned --- */
+  .proof-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(3rem, 8vw, 8rem);
+    height: 100%;
+    padding: clamp(2rem, 6vw, 6rem);
+  }
+  .proof-stat { text-align: center; }
+  .proof-stat__num {
+    font-family: var(--sc-font-display);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--sc-ink);
+  }
+  .proof-stat__suffix {
+    font-size: 0.5em;
+    color: var(--sc-accent);
+    font-weight: 700;
+  }
+  .proof-stat__label {
+    font-family: var(--sc-font-text);
+    font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+    color: var(--sc-ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 0.75rem;
+  }
+  .proof-divider {
+    width: 1px;
+    height: 4rem;
+    background: rgba(240,242,245,0.12);
+    flex-shrink: 0;
+  }
+
+  /* --- Phase delivery tags --- */
+  .phase__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--sc-font-display);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4ade80;
+    margin-top: 0.75rem;
+    opacity: 0.8;
+  }
+  .phase__tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+  }
+
   /* --- Act 2: Weight (flow + reveal) --- */
   .split {
     display: grid;
@@ -321,6 +381,15 @@
     .hero-copy .sc-body { max-width: none; }
     .clients { gap: 1.2rem; margin-top: 1.25rem; }
 
+    /* --- Proof (act 1b) --- */
+    .proof-grid {
+      gap: clamp(1.5rem, 6vw, 3rem);
+      flex-wrap: wrap;
+      padding: clamp(1.5rem, 5vw, 3rem);
+    }
+    .proof-stat__num { font-size: clamp(2.5rem, 12vw, 4rem); }
+    .proof-divider { height: 3rem; }
+
     /* --- Split (act 2): stack, image above text --- */
     .split {
       padding: clamp(1.25rem, 4vw, 2.5rem);
@@ -418,6 +487,28 @@
     </div>
   </section>
 
+  <!-- 1b · PROOF: pin — the track record, numbers that land as you scroll -->
+  <section data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#111820">
+    <div data-sc-stage>
+      <div class="proof-grid">
+        <div class="proof-stat">
+          <div class="proof-stat__num" data-sc-cue="0.08 0.55"><span data-sc-count="0 44" data-sc-count-at="0.12 0.5">0</span><span class="proof-stat__suffix"> yrs</span></div>
+          <div class="proof-stat__label" data-sc-cue="0.15 0.6">In business</div>
+        </div>
+        <div class="proof-divider" data-sc-cue="0.12 0.55" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <div class="proof-stat__num" data-sc-cue="0.18 0.65"><span data-sc-count="0 400" data-sc-count-at="0.22 0.58">0</span><span class="proof-stat__suffix">+</span></div>
+          <div class="proof-stat__label" data-sc-cue="0.25 0.7">Projects delivered</div>
+        </div>
+        <div class="proof-divider" data-sc-cue="0.22 0.65" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <div class="proof-stat__num" data-sc-cue="0.3 0.75"><span data-sc-count="0 100" data-sc-count-at="0.34 0.68">0</span><span class="proof-stat__suffix">%</span></div>
+          <div class="proof-stat__label" data-sc-cue="0.37 0.8">On-time completion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 2 · WEIGHT: flow + reveal — raw materials, the scale of what's coming -->
   <section class="sc-section" data-sc-act="flow" data-sc-drift="#181d26">
     <div class="sc-wrap split">
@@ -426,12 +517,12 @@
         <p class="sc-body">Steel beams, lumber stacks, concrete, glass. Before a single wall goes up, every component is staged, verified, and sequenced. The build is won or lost in logistics.</p>
         <div class="stat-row">
           <div class="stat">
-            <span class="stat__num" data-sc-count="0 44" data-sc-count-at="0.2 0.6">0</span>
-            <span class="stat__label">Years</span>
-          </div>
-          <div class="stat">
             <span class="stat__num">Nationwide</span>
             <span class="stat__label">Reach</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">24hr</span>
+            <span class="stat__label">Response</span>
           </div>
         </div>
       </div>
@@ -455,6 +546,7 @@
             <div class="phase__num">Phase 01</div>
             <h3>Framing</h3>
             <p>Steel studs and structural headers define every room, every corridor, every sightline. The skeleton of the space takes shape.</p>
+            <div class="phase__tag">Delivered on schedule</div>
           </div>
         </article>
         <article class="phase">
@@ -463,6 +555,7 @@
             <div class="phase__num">Phase 02</div>
             <h3>Systems</h3>
             <p>Electrical, HVAC, plumbing, fire suppression. Everything that has to be right before the walls close. No second chances.</p>
+            <div class="phase__tag">Delivered 3 days early</div>
           </div>
         </article>
         <article class="phase">
@@ -471,6 +564,7 @@
             <div class="phase__num">Phase 03</div>
             <h3>Surfaces</h3>
             <p>Drywall, tape, mud, paint. The raw structure disappears behind finished surfaces. The space starts to look like what it will become.</p>
+            <div class="phase__tag">Delivered on schedule</div>
           </div>
         </article>
       </div>
